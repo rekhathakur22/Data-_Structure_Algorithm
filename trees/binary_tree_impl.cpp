@@ -27,6 +27,14 @@ Node* build_tree(vector<int> arr){
    return node;
  }
 
+ void inorder(Node* root)
+ {
+     if(root == NULL) return;
+     inorder(root->left);
+     cout<<root->data<<" ";
+     inorder(root->right);
+ }
+
 int main()
 {
     vector<int> arr = {1,3,-1,-1,4,5,-1,-1,6,-1,-1};
