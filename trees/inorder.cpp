@@ -18,7 +18,7 @@ class Node{
 };
 
 
-Node* buildTree(vector<int> arr, int& ind){
+Node* buildTree(vector<int> &arr, int& ind){
    ind++;
    if(arr.empty() || ind >= arr.size() || arr[ind]== -1) return nullptr;
 
@@ -28,18 +28,42 @@ Node* buildTree(vector<int> arr, int& ind){
    return node;
 }
 
-Node* inorder(Node* root){
-    if(root==nullptr) return nullptr;
+void inorder(Node* root){
+    if(root==nullptr) return ;
     inorder(root->left);
     cout<<root->data<<" ";
     inorder(root->right);
-    return root;
+    return ;
 }
 
+void preOrder(Node* root){
+    if(root==nullptr) return;
+    cout<<root->data<<" ";
+    preOrder(root->left);
+    preOrder(root->right);
+    return ;
+}
+
+void postOrder(Node* root){
+    if(root==nullptr) return;
+    postOrder(root->left);
+    postOrder(root->right);
+    cout<<root->data<<" ";
+    return ;
+}
 int main(){
     vector<int> arr = {1,2,3,-1,4,5,-1,2};
     int ind = -1;
     Node* root = buildTree(arr,ind);
+    cout<<"Inorder: ";
     inorder(root);
+    cout<<endl;
+
+    cout<<"Preorder: ";
+    preOrder(root);
+    cout<<endl;
+    cout<<"Postorder: ";
+    postOrder(root);
+    cout<<endl;
     return 0;
 }
