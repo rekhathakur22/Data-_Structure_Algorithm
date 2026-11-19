@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<queue>
 using namespace std;
 
 class Node{
@@ -36,6 +37,29 @@ void inorder(Node* root){
     return ;
 }
 
+void levelOrder(Node* root){
+    if(root== nullptr) return;
+
+    queue<Node*> q;
+    q.push(root);
+    q.push(nullptr);
+    while(!q.empty()){
+        Node* node = q.front();
+        q.pop();
+        if(node != nullptr){
+            cout<<node->data<<" ";
+            if(node->left){
+                q.push(node->left);
+            }
+            if(node->right){
+                q.push(node->right);
+            }
+        } 
+        else if(!q.empty()){
+            q.push(nullptr);
+        }
+    }
+}
 void preOrder(Node* root){
     if(root==nullptr) return;
     cout<<root->data<<" ";
@@ -64,6 +88,9 @@ int main(){
     cout<<endl;
     cout<<"Postorder: ";
     postOrder(root);
+    cout<<endl;
+
+    levelOrder(root);
     cout<<endl;
     return 0;
 }
